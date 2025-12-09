@@ -37,12 +37,23 @@ local commands = {
 		format = {
 			first = "Naiad is used with the commands below, followed by their respective arguments. ",
 			last = "",
-			separator_one = " >> ",
+			separator_one = " | ",
+			separator_two = " >> ",
 			endline_one = "\n",
 			endline_two = "\n",
 			endline_three = "\n",
 			per_command = function(_cmmd, _format)
-				print(_format.endline_two .. _cmmd.command .. _format.separator_one .. _cmmd.desc)
+				-- local _raw_second = string.sub(_cmmd.command, 2)
+				-- local _raw_first = string.upper(string.sub(_cmmd.command, 0, 1))
+				-- print(_format.endline_two .. _raw_first .. _raw_second .. _format.separator_one .. _cmmd.desc)
+				print(
+					_format.endline_two
+						.. _cmmd.command
+						.. _format.separator_one
+						.. _cmmd.shortcut
+						.. _format.separator_two
+						.. _cmmd.desc
+				)
 			end,
 			-- Per command is executed with EVERY command in this list. Maybe someday it will work with groups
 		},
@@ -68,7 +79,7 @@ local commands = {
 
 local function working_naiad(_args, _commands)
 	for _i, _cmmd in ipairs(_commands) do -- Just iterate in the big command section
-		if not ((_cmmd.command == _args[1]) or (_cmmd.command == _args[1])) then
+		if not ((_cmmd.command == _args[1]) or (_cmmd.shortcut == _args[1])) then
 			-- This checks if args (in this case, all of the command) coincides with one of the commands, if true, keep cheking until know what to do
 			_commands.help.all(_commands.help.format, _commands)
 			os.exit(2)
