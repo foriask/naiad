@@ -5,10 +5,10 @@ local version = "0.1a"
 --[[
 	This is just for ocasional use CLI.
 	This aimt to have some functions:
-	- Full program less than 16KB
+	- Full program less than 16KB (or 1KB without color-image and that kind of things)
 	- Runs with iterated commands
 	- Able to customize how it looks
-	- Even supports colored terminals (maybe)
+	- Even supports colored terminals and images (maybe, i would like that)
 ]]
 local commands = {
 	{
